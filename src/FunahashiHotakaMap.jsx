@@ -10,7 +10,7 @@ const locations = [
     x: 255,
     y: 265,
     description: '出生地。4人兄弟の長男として誕生。小1から高3まで野球を12年間続け、享栄高校では野球部主将を務める',
-    color: '#2563eb'
+    color: '#8B4513'
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const locations = [
     x: 295,
     y: 255,
     description: '関東学院大学進学のため一人暮らし開始。1年半で中退を決意。バイクで53日間の日本一周を敢行',
-    color: '#3b82f6'
+    color: '#CD853F'
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ const locations = [
     x: 340,
     y: 370,
     description: '海外での挑戦。新しい価値観と出会い、複数の起業を試みる',
-    color: '#60a5fa'
+    color: '#B8860B'
   },
   {
     id: 4,
@@ -43,7 +43,7 @@ const locations = [
     x: 300,
     y: 245,
     description: '芸能活動期。相方とシェアハウスで生活しながらM-1優勝を目指す。TikTokで763万再生・23万いいねを獲得',
-    color: '#0ea5e9'
+    color: '#DAA520'
   },
   {
     id: 5,
@@ -54,7 +54,7 @@ const locations = [
     x: 240,
     y: 270,
     description: 'コロナ禍を機に移住。英語学習1095日連続、Google Map公式認定(上位1%)、投資で1万円→4000万円超。全都道府県訪問達成',
-    color: '#06b6d4'
+    color: '#D2691E'
   },
   {
     id: 6,
@@ -65,7 +65,7 @@ const locations = [
     x: 305,
     y: 240,
     description: '2025年2月「株式会社Universal Pine」設立。AIネックレスデバイス開発に挑戦。300万円投資+7200万円公庫融資を確保',
-    color: '#0284c7'
+    color: '#A0522D'
   }
 ];
 
@@ -86,8 +86,8 @@ export default function FunahashiHotakaMap() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)',
-      fontFamily: '"Noto Sans JP", "Helvetica Neue", Arial, sans-serif',
+      background: 'linear-gradient(135deg, #f5e6d3 0%, #e8d4bc 50%, #d4c4a8 100%)',
+      fontFamily: '"Crimson Text", "Noto Serif JP", Georgia, serif',
       padding: '20px',
       position: 'relative',
       overflow: 'hidden'
@@ -99,19 +99,8 @@ export default function FunahashiHotakaMap() {
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a08060' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         opacity: 0.8,
-        pointerEvents: 'none'
-      }} />
-
-      {/* グロー効果 */}
-      <div style={{
-        position: 'absolute',
-        top: '20%',
-        left: '30%',
-        width: '400px',
-        height: '400px',
-        background: 'radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%)',
         pointerEvents: 'none'
       }} />
 
@@ -123,32 +112,32 @@ export default function FunahashiHotakaMap() {
         zIndex: 1
       }}>
         <h1 style={{
-          fontSize: '32px',
-          color: '#f8fafc',
+          fontSize: '28px',
+          color: '#4a3728',
           margin: 0,
-          letterSpacing: '6px',
-          textShadow: '0 0 30px rgba(59, 130, 246, 0.5)',
-          fontWeight: '700'
+          letterSpacing: '4px',
+          textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
+          fontWeight: 'normal'
         }}>
           船橋穂天の足跡
         </h1>
         <p style={{
           fontSize: '14px',
-          color: '#94a3b8',
+          color: '#7a6a58',
           margin: '8px 0 0 0',
-          letterSpacing: '2px'
+          fontStyle: 'italic'
         }}>
           Funahashi Hotaka (1996.9.8 - )
         </p>
         <div style={{
           width: '200px',
           height: '2px',
-          background: 'linear-gradient(90deg, transparent, #3b82f6, transparent)',
+          background: 'linear-gradient(90deg, transparent, #8B7355, transparent)',
           margin: '15px auto'
         }} />
         <p style={{
           fontSize: '13px',
-          color: '#64748b',
+          color: '#7a6a58',
           margin: '5px 0 0 0'
         }}>
           愛知から世界へ — 挑戦と成長の軌跡
@@ -159,7 +148,7 @@ export default function FunahashiHotakaMap() {
       <div style={{
         display: 'flex',
         gap: '30px',
-        maxWidth: '1200px',
+        maxWidth: '1100px',
         margin: '0 auto',
         position: 'relative',
         zIndex: 1
@@ -167,38 +156,38 @@ export default function FunahashiHotakaMap() {
         {/* 地図 */}
         <div style={{
           flex: '1',
-          background: 'linear-gradient(145deg, #1e293b, #0f172a)',
-          borderRadius: '16px',
+          background: 'linear-gradient(145deg, #f8f0e3, #ebe0ce)',
+          borderRadius: '8px',
           padding: '20px',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.05)',
-          border: '1px solid rgba(59, 130, 246, 0.2)',
+          boxShadow: '0 8px 32px rgba(74, 55, 40, 0.2), inset 0 2px 4px rgba(255,255,255,0.5)',
+          border: '3px solid #c4a77d',
           position: 'relative'
         }}>
-          {/* 枠線装飾 */}
+          {/* 古地図風の装飾 */}
           <div style={{
             position: 'absolute',
             top: '10px',
             left: '10px',
             right: '10px',
             bottom: '10px',
-            border: '1px solid rgba(59, 130, 246, 0.1)',
-            borderRadius: '8px',
+            border: '1px solid #d4c4a8',
+            borderRadius: '4px',
             pointerEvents: 'none'
           }} />
 
           <svg viewBox="0 0 400 420" style={{ width: '100%', height: 'auto' }}>
             {/* 海 */}
-            <rect x="0" y="0" width="400" height="420" fill="#0c1929" />
+            <rect x="0" y="0" width="400" height="420" fill="#c9d4c5" opacity="0.3" />
 
             {/* 日本地図（簡略化） */}
             {/* 北海道 */}
             <path
               d="M 300 80 Q 320 70, 340 75 Q 360 80, 365 100 Q 368 115, 355 125
                  Q 340 135, 320 130 Q 305 125, 295 110 Q 290 95, 300 80 Z"
-              fill="#1e3a5f"
-              stroke="#3b82f6"
+              fill="#e8dcc8"
+              stroke="#8B7355"
               strokeWidth="1"
-              opacity="0.6"
+              opacity="0.9"
             />
 
             {/* 本州 */}
@@ -209,21 +198,21 @@ export default function FunahashiHotakaMap() {
                  Q 260 275, 240 280 Q 220 285, 200 282
                  Q 180 278, 165 265 Q 155 250, 160 230
                  Q 165 210, 180 195 Q 185 185, 180 180 Z"
-              fill="#1e3a5f"
-              stroke="#3b82f6"
+              fill="#e8dcc8"
+              stroke="#8B7355"
               strokeWidth="1.5"
-              opacity="0.7"
+              opacity="0.9"
             />
-            <text x="250" y="225" fontSize="11" fill="#64748b" opacity="0.5">JAPAN</text>
+            <text x="250" y="225" fontSize="12" fill="#6b5b4f" fontStyle="italic" opacity="0.7">Japan</text>
 
             {/* 四国 */}
             <path
               d="M 200 290 Q 220 285, 240 290 Q 255 295, 250 310
                  Q 240 320, 220 318 Q 200 315, 200 300 Q 198 292, 200 290 Z"
-              fill="#1e3a5f"
-              stroke="#3b82f6"
+              fill="#e8dcc8"
+              stroke="#8B7355"
               strokeWidth="1"
-              opacity="0.6"
+              opacity="0.9"
             />
 
             {/* 九州 */}
@@ -231,10 +220,10 @@ export default function FunahashiHotakaMap() {
               d="M 160 290 Q 175 285, 185 295 Q 192 310, 185 330
                  Q 178 345, 165 345 Q 150 340, 148 320
                  Q 145 305, 160 290 Z"
-              fill="#1e3a5f"
-              stroke="#3b82f6"
+              fill="#e8dcc8"
+              stroke="#8B7355"
               strokeWidth="1"
-              opacity="0.6"
+              opacity="0.9"
             />
 
             {/* オーストラリア（小さく右下に） */}
@@ -242,48 +231,36 @@ export default function FunahashiHotakaMap() {
               d="M 310 350 Q 340 340, 370 350 Q 390 365, 385 385
                  Q 375 400, 350 402 Q 325 400, 315 385
                  Q 305 370, 310 350 Z"
-              fill="#1e3a5f"
-              stroke="#60a5fa"
+              fill="#e8dcc8"
+              stroke="#8B7355"
               strokeWidth="1"
-              opacity="0.5"
+              opacity="0.9"
             />
-            <text x="350" y="375" fontSize="8" fill="#64748b" opacity="0.5">AUSTRALIA</text>
+            <text x="350" y="375" fontSize="10" fill="#6b5b4f" fontStyle="italic" opacity="0.7">Australia</text>
 
             {/* 移動経路 */}
             <defs>
               <marker id="arrowhead" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-                <path d="M 0 0 L 6 3 L 0 6 Z" fill="#3b82f6" opacity="0.8" />
+                <path d="M 0 0 L 6 3 L 0 6 Z" fill="#8B4513" opacity="0.6" />
               </marker>
-              <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.8" />
-              </linearGradient>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
             </defs>
 
             {journeyPaths.map((path, index) => {
               const from = getLocation(path.from);
               const to = getLocation(path.to);
               const midX = (from.x + to.x) / 2;
-              const midY = (from.y + to.y) / 2 - 20;
+              const midY = (from.y + to.y) / 2 - 15;
 
               return (
                 <g key={index}>
                   <path
                     d={`M ${from.x} ${from.y} Q ${midX} ${midY}, ${to.x} ${to.y}`}
                     fill="none"
-                    stroke="url(#pathGradient)"
-                    strokeWidth="2"
-                    strokeDasharray="6,4"
-                    opacity="0.6"
+                    stroke="#8B4513"
+                    strokeWidth="1.5"
+                    strokeDasharray="4,3"
+                    opacity="0.4"
                     markerEnd="url(#arrowhead)"
-                    filter="url(#glow)"
                   />
                 </g>
               );
@@ -298,13 +275,12 @@ export default function FunahashiHotakaMap() {
                 onMouseLeave={() => setHoveredLocation(null)}
                 onClick={() => setSelectedLocation(selectedLocation === location.id ? null : location.id)}
               >
-                {/* マーカーのグロー */}
+                {/* マーカーの影 */}
                 <circle
-                  cx={location.x}
-                  cy={location.y}
-                  r={hoveredLocation === location.id || selectedLocation === location.id ? 20 : 14}
-                  fill={location.color}
-                  opacity="0.2"
+                  cx={location.x + 2}
+                  cy={location.y + 2}
+                  r={hoveredLocation === location.id || selectedLocation === location.id ? 14 : 10}
+                  fill="rgba(0,0,0,0.2)"
                   style={{ transition: 'all 0.3s ease' }}
                 />
                 {/* メインマーカー */}
@@ -313,10 +289,9 @@ export default function FunahashiHotakaMap() {
                   cy={location.y}
                   r={hoveredLocation === location.id || selectedLocation === location.id ? 12 : 8}
                   fill={location.color}
-                  stroke="#f8fafc"
+                  stroke="#f5e6d3"
                   strokeWidth="2"
                   style={{ transition: 'all 0.3s ease' }}
-                  filter="url(#glow)"
                 />
                 {/* 番号 */}
                 <text
@@ -332,12 +307,11 @@ export default function FunahashiHotakaMap() {
                 {/* 地名ラベル */}
                 <text
                   x={location.x}
-                  y={location.y - 18}
+                  y={location.y - 16}
                   fontSize="11"
-                  fill="#e2e8f0"
+                  fill="#4a3728"
                   textAnchor="middle"
                   fontWeight="bold"
-                  style={{ textShadow: '0 0 10px rgba(0,0,0,0.8)' }}
                 >
                   {location.name}
                 </text>
@@ -346,36 +320,43 @@ export default function FunahashiHotakaMap() {
 
             {/* コンパス */}
             <g transform="translate(50, 60)">
-              <circle cx="0" cy="0" r="25" fill="none" stroke="#3b82f6" strokeWidth="1" opacity="0.3" />
-              <path d="M 0 -20 L 4 0 L 0 -8 L -4 0 Z" fill="#3b82f6" />
-              <path d="M 0 20 L 4 0 L 0 8 L -4 0 Z" fill="#1e40af" />
-              <text x="0" y="-28" fontSize="10" fill="#3b82f6" textAnchor="middle" fontWeight="bold">N</text>
+              <circle cx="0" cy="0" r="25" fill="none" stroke="#8B7355" strokeWidth="1" opacity="0.5" />
+              <path d="M 0 -20 L 4 0 L 0 -8 L -4 0 Z" fill="#8B4513" />
+              <path d="M 0 20 L 4 0 L 0 8 L -4 0 Z" fill="#c4a77d" />
+              <text x="0" y="-28" fontSize="10" fill="#8B4513" textAnchor="middle" fontWeight="bold">N</text>
+            </g>
+
+            {/* スケール */}
+            <g transform="translate(280, 400)">
+              <line x1="0" y1="0" x2="60" y2="0" stroke="#8B7355" strokeWidth="2" />
+              <line x1="0" y1="-3" x2="0" y2="3" stroke="#8B7355" strokeWidth="2" />
+              <line x1="60" y1="-3" x2="60" y2="3" stroke="#8B7355" strokeWidth="2" />
+              <text x="30" y="12" fontSize="8" fill="#6b5b4f" textAnchor="middle">約500km</text>
             </g>
           </svg>
         </div>
 
         {/* 年表サイドバー */}
         <div style={{
-          width: '320px',
-          background: 'linear-gradient(145deg, #1e293b, #0f172a)',
-          borderRadius: '16px',
+          width: '280px',
+          background: 'linear-gradient(145deg, #f8f0e3, #ebe0ce)',
+          borderRadius: '8px',
           padding: '20px',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.05)',
-          border: '1px solid rgba(59, 130, 246, 0.2)'
+          boxShadow: '0 8px 32px rgba(74, 55, 40, 0.2), inset 0 2px 4px rgba(255,255,255,0.5)',
+          border: '3px solid #c4a77d'
         }}>
           <h2 style={{
             fontSize: '16px',
-            color: '#f8fafc',
+            color: '#4a3728',
             margin: '0 0 15px 0',
             textAlign: 'center',
-            borderBottom: '1px solid rgba(59, 130, 246, 0.3)',
-            paddingBottom: '10px',
-            letterSpacing: '2px'
+            borderBottom: '1px solid #c4a77d',
+            paddingBottom: '10px'
           }}>
-            TIMELINE
+            年表 / Timeline
           </h2>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {locations.map((location) => (
               <div
                 key={location.id}
@@ -385,30 +366,29 @@ export default function FunahashiHotakaMap() {
                 style={{
                   padding: '12px',
                   background: selectedLocation === location.id
-                    ? 'linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.1))'
+                    ? 'linear-gradient(135deg, #d4c4a8, #c4b498)'
                     : hoveredLocation === location.id
-                      ? 'rgba(59, 130, 246, 0.1)'
+                      ? 'rgba(212, 196, 168, 0.5)'
                       : 'transparent',
-                  borderRadius: '8px',
+                  borderRadius: '6px',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
-                  borderLeft: `3px solid ${location.color}`
+                  borderLeft: `4px solid ${location.color}`
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <div style={{
-                    width: '28px',
-                    height: '28px',
+                    width: '24px',
+                    height: '24px',
                     borderRadius: '50%',
-                    background: `linear-gradient(135deg, ${location.color}, ${location.color}88)`,
+                    background: location.color,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     color: '#fff',
                     fontSize: '12px',
                     fontWeight: 'bold',
-                    flexShrink: 0,
-                    boxShadow: `0 0 10px ${location.color}40`
+                    flexShrink: 0
                   }}>
                     {location.id}
                   </div>
@@ -416,27 +396,27 @@ export default function FunahashiHotakaMap() {
                     <div style={{
                       fontSize: '14px',
                       fontWeight: 'bold',
-                      color: '#f8fafc'
+                      color: '#4a3728'
                     }}>
                       {location.name}
                       <span style={{
                         fontSize: '11px',
                         fontWeight: 'normal',
                         marginLeft: '6px',
-                        color: '#94a3b8'
+                        color: '#7a6a58'
                       }}>
                         {location.nameEn}
                       </span>
                     </div>
                     <div style={{
                       fontSize: '12px',
-                      color: '#3b82f6',
+                      color: '#8B4513',
                       fontWeight: 'bold'
                     }}>
                       {location.years}
                       <span style={{
                         marginLeft: '8px',
-                        color: '#64748b',
+                        color: '#7a6a58',
                         fontWeight: 'normal'
                       }}>
                         ({location.age})
@@ -447,12 +427,12 @@ export default function FunahashiHotakaMap() {
 
                 {(selectedLocation === location.id || hoveredLocation === location.id) && (
                   <div style={{
-                    marginTop: '10px',
-                    paddingTop: '10px',
-                    borderTop: '1px dashed rgba(59, 130, 246, 0.3)',
+                    marginTop: '8px',
+                    paddingTop: '8px',
+                    borderTop: '1px dashed #c4a77d',
                     fontSize: '12px',
-                    color: '#94a3b8',
-                    lineHeight: '1.6'
+                    color: '#5a4a3f',
+                    lineHeight: '1.5'
                   }}>
                     {location.description}
                   </div>
@@ -464,53 +444,52 @@ export default function FunahashiHotakaMap() {
           {/* 統計情報 */}
           <div style={{
             marginTop: '20px',
-            padding: '15px',
-            background: 'rgba(59, 130, 246, 0.1)',
-            borderRadius: '8px',
-            border: '1px solid rgba(59, 130, 246, 0.2)'
+            padding: '12px',
+            background: 'rgba(139, 69, 19, 0.1)',
+            borderRadius: '6px',
+            border: '1px dashed #c4a77d'
           }}>
             <div style={{
               fontSize: '12px',
-              color: '#94a3b8',
-              marginBottom: '10px',
-              fontWeight: 'bold',
-              letterSpacing: '1px'
+              color: '#4a3728',
+              marginBottom: '8px',
+              fontWeight: 'bold'
             }}>
-              ACHIEVEMENTS
+              主な実績
             </div>
             <div style={{
               display: 'grid',
               gridTemplateColumns: '1fr 1fr',
-              gap: '8px',
+              gap: '6px',
               fontSize: '11px'
             }}>
-              <div style={{ color: '#64748b' }}>
-                <span style={{ color: '#3b82f6', fontWeight: 'bold' }}>47</span> 都道府県制覇
+              <div style={{ color: '#5a4a3f' }}>
+                <span style={{ color: '#8B4513', fontWeight: 'bold' }}>47</span> 都道府県制覇
               </div>
-              <div style={{ color: '#64748b' }}>
-                <span style={{ color: '#3b82f6', fontWeight: 'bold' }}>1095</span> 日英語学習
+              <div style={{ color: '#5a4a3f' }}>
+                <span style={{ color: '#8B4513', fontWeight: 'bold' }}>1095</span> 日英語学習
               </div>
-              <div style={{ color: '#64748b' }}>
-                <span style={{ color: '#3b82f6', fontWeight: 'bold' }}>100</span> 冊読破
+              <div style={{ color: '#5a4a3f' }}>
+                <span style={{ color: '#8B4513', fontWeight: 'bold' }}>100</span> 冊読破
               </div>
-              <div style={{ color: '#64748b' }}>
-                <span style={{ color: '#3b82f6', fontWeight: 'bold' }}>763万</span> 再生
+              <div style={{ color: '#5a4a3f' }}>
+                <span style={{ color: '#8B4513', fontWeight: 'bold' }}>763万</span> 再生
               </div>
             </div>
           </div>
 
           {/* 操作説明 */}
           <div style={{
-            marginTop: '15px',
+            marginTop: '12px',
             padding: '12px',
-            background: 'rgba(6, 182, 212, 0.1)',
-            borderRadius: '8px',
+            background: 'rgba(139, 69, 19, 0.1)',
+            borderRadius: '6px',
             fontSize: '11px',
-            color: '#64748b',
-            lineHeight: '1.5'
+            color: '#6b5b4f',
+            lineHeight: '1.6'
           }}>
-            <strong style={{ color: '#06b6d4' }}>操作方法:</strong><br />
-            地図上のマーカーまたは年表をクリック・ホバーで詳細表示
+            <strong>操作方法:</strong><br />
+            地図上のマーカーまたは年表をクリック/ホバーすると詳細が表示されます
           </div>
         </div>
       </div>
@@ -519,22 +498,20 @@ export default function FunahashiHotakaMap() {
       <div style={{
         textAlign: 'center',
         marginTop: '25px',
-        color: '#64748b',
-        fontSize: '12px',
+        color: '#7a6a58',
+        fontSize: '11px',
         position: 'relative',
         zIndex: 1
       }}>
         <div style={{
           width: '150px',
           height: '1px',
-          background: 'linear-gradient(90deg, transparent, #3b82f6, transparent)',
+          background: 'linear-gradient(90deg, transparent, #8B7355, transparent)',
           margin: '0 auto 10px'
         }} />
-        <span style={{ letterSpacing: '1px' }}>
-          株式会社Universal Pine 代表取締役
-        </span>
+        株式会社Universal Pine 代表取締役
         <br />
-        <span style={{ fontSize: '11px', color: '#475569' }}>
+        <span style={{ fontStyle: 'italic' }}>
           "挑戦し続ける人生を"
         </span>
       </div>
