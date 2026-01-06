@@ -350,9 +350,6 @@ export default function FunahashiHotakaMap() {
             boxShadow: '0 2px 8px rgba(74, 55, 40, 0.2)',
             zIndex: 1
           }}>
-            <div style={{ fontSize: '11px', color: '#6b5b4f', textAlign: 'center', marginBottom: '6px', fontStyle: 'italic' }}>
-              Australia
-            </div>
             <ComposableMap
               projection="geoMercator"
               projectionConfig={{
