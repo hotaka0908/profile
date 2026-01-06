@@ -236,10 +236,10 @@ export default function FunahashiHotakaMap() {
                 strokeDasharray="5,3"
                 strokeOpacity={0.5}
               />
-              {/* 2→オーストラリア方向（右下へ） */}
+              {/* 2→オーストラリア方向（右下のボックスへ） */}
               <Line
                 from={locations[1].coordinates}
-                to={[142, 33]}
+                to={[140.5, 33.2]}
                 stroke="#8B4513"
                 strokeWidth={2}
                 strokeLinecap="round"
@@ -248,7 +248,7 @@ export default function FunahashiHotakaMap() {
               />
               {/* オーストラリアから→4 東京 */}
               <Line
-                from={[142, 33.5]}
+                from={[140.8, 33.2]}
                 to={locations[3].coordinates}
                 stroke="#8B4513"
                 strokeWidth={2}
@@ -373,9 +373,9 @@ export default function FunahashiHotakaMap() {
                     ))
                 }
               </Geographies>
-              {/* 入線（左上から） */}
+              {/* 入線（上から） */}
               <Line
-                from={[120, -15]}
+                from={[148, -10]}
                 to={[153.6150, -28.6474]}
                 stroke="#8B4513"
                 strokeWidth={4}
@@ -383,10 +383,10 @@ export default function FunahashiHotakaMap() {
                 strokeDasharray="8,5"
                 strokeOpacity={0.5}
               />
-              {/* 出線（左上へ） */}
+              {/* 出線（上へ） */}
               <Line
                 from={[153.6150, -28.6474]}
-                to={[125, -12]}
+                to={[152, -10]}
                 stroke="#8B4513"
                 strokeWidth={4}
                 strokeLinecap="round"
