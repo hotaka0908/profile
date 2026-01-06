@@ -376,6 +376,26 @@ export default function FunahashiHotakaMap() {
                     ))
                 }
               </Geographies>
+              {/* バイロンベイから上方向（日本へ）への線 */}
+              <Line
+                from={[153.6150, -28.6474]}
+                to={[140, 0]}
+                stroke="#8B4513"
+                strokeWidth={4}
+                strokeLinecap="round"
+                strokeDasharray="8,5"
+                strokeOpacity={0.5}
+              />
+              {/* バイロンベイから上方向（東京へ）への線 */}
+              <Line
+                from={[153.6150, -28.6474]}
+                to={[155, 0]}
+                stroke="#8B4513"
+                strokeWidth={4}
+                strokeLinecap="round"
+                strokeDasharray="8,5"
+                strokeOpacity={0.5}
+              />
               <Marker coordinates={[153.6150, -28.6474]}>
                 <circle
                   r={hoveredLocation === 3 || selectedLocation === 3 ? 90 : 70}
