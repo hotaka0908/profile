@@ -237,10 +237,10 @@ export default function FunahashiHotakaMap() {
                 strokeDasharray="5,3"
                 strokeOpacity={0.5}
               />
-              {/* 2→3 横浜→バイロンベイ（仮想座標：ボックス左上角） */}
+              {/* 2→3 横浜→バイロンベイ（仮想座標：地図右下） */}
               <Line
                 from={locations[1].coordinates}
-                to={[139.5, 32.8]}
+                to={[140.5, 29]}
                 stroke="#8B4513"
                 strokeWidth={2}
                 strokeLinecap="round"
@@ -249,7 +249,7 @@ export default function FunahashiHotakaMap() {
               />
               {/* 3→4 バイロンベイ（仮想座標）→東京 */}
               <Line
-                from={[139.5, 32.8]}
+                from={[140.5, 29]}
                 to={locations[3].coordinates}
                 stroke="#8B4513"
                 strokeWidth={2}
@@ -348,7 +348,7 @@ export default function FunahashiHotakaMap() {
             padding: '10px',
             border: '2px solid #c4a77d',
             boxShadow: '0 2px 8px rgba(74, 55, 40, 0.2)',
-            zIndex: 10
+            zIndex: 1
           }}>
             <div style={{ fontSize: '11px', color: '#6b5b4f', textAlign: 'center', marginBottom: '6px', fontStyle: 'italic' }}>
               Australia
