@@ -505,7 +505,7 @@ export default function FunahashiHotakaMap() {
         株式会社Universal Pine 代表取締役
         <br />
         <span style={{ fontStyle: 'italic' }}>
-          "挑戦し続ける人生を"
+          "人々の生活をより良く"
         </span>
       </div>
     </div>
