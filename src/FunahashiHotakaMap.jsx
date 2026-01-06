@@ -379,21 +379,21 @@ export default function FunahashiHotakaMap() {
               {/* バイロンベイから上方向（横浜から）への線 */}
               <Line
                 from={[153.6150, -28.6474]}
-                to={[148, 10]}
+                to={[145, 10]}
                 stroke="#8B4513"
-                strokeWidth={4}
+                strokeWidth={2}
                 strokeLinecap="round"
-                strokeDasharray="8,5"
+                strokeDasharray="5,3"
                 strokeOpacity={0.5}
               />
               {/* バイロンベイから上方向（東京へ）への線 */}
               <Line
                 from={[153.6150, -28.6474]}
-                to={[162, 10]}
+                to={[155, 10]}
                 stroke="#8B4513"
-                strokeWidth={4}
+                strokeWidth={2}
                 strokeLinecap="round"
-                strokeDasharray="8,5"
+                strokeDasharray="5,3"
                 strokeOpacity={0.5}
               />
               <Marker coordinates={[153.6150, -28.6474]}>
