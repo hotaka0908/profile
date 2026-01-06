@@ -225,11 +225,32 @@ export default function FunahashiHotakaMap() {
                 }
               </Geographies>
 
+              {/* 仮想バイロンベイ座標（オーストラリアボックスの位置に対応） */}
               {/* 移動経路 */}
               {/* 1→2 瀬戸市→横浜 */}
               <Line
                 from={locations[0].coordinates}
                 to={locations[1].coordinates}
+                stroke="#8B4513"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeDasharray="5,3"
+                strokeOpacity={0.5}
+              />
+              {/* 2→3 横浜→バイロンベイ（仮想座標：地図右下） */}
+              <Line
+                from={locations[1].coordinates}
+                to={[141, 33]}
+                stroke="#8B4513"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeDasharray="5,3"
+                strokeOpacity={0.5}
+              />
+              {/* 3→4 バイロンベイ（仮想座標）→東京 */}
+              <Line
+                from={[141, 33]}
+                to={locations[3].coordinates}
                 stroke="#8B4513"
                 strokeWidth={2}
                 strokeLinecap="round"
@@ -315,43 +336,6 @@ export default function FunahashiHotakaMap() {
             </ComposableMap>
           </div>
 
-          {/* 接続線（横浜→オーストラリア→東京） */}
-          <svg
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              pointerEvents: 'none',
-              zIndex: 5
-            }}
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-          >
-            {/* 横浜(2)からバイロンベイ(3)へ */}
-            <line
-              x1="88"
-              y1="42"
-              x2="85"
-              y2="87"
-              stroke="#8B4513"
-              strokeWidth="0.3"
-              strokeDasharray="1,0.5"
-              opacity="0.5"
-            />
-            {/* バイロンベイ(3)から東京(4)へ */}
-            <line
-              x1="85"
-              y1="87"
-              x2="87"
-              y2="27"
-              stroke="#8B4513"
-              strokeWidth="0.3"
-              strokeDasharray="1,0.5"
-              opacity="0.5"
-            />
-          </svg>
 
           {/* オーストラリア（小さく表示） */}
           <div style={{
