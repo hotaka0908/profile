@@ -240,7 +240,7 @@ export default function FunahashiHotakaMap() {
               {/* 2→3 横浜→バイロンベイ（仮想座標：地図右下） */}
               <Line
                 from={locations[1].coordinates}
-                to={[141, 33]}
+                to={[142, 31]}
                 stroke="#8B4513"
                 strokeWidth={2}
                 strokeLinecap="round"
@@ -249,7 +249,7 @@ export default function FunahashiHotakaMap() {
               />
               {/* 3→4 バイロンベイ（仮想座標）→東京 */}
               <Line
-                from={[141, 33]}
+                from={[142, 31]}
                 to={locations[3].coordinates}
                 stroke="#8B4513"
                 strokeWidth={2}
