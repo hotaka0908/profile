@@ -316,7 +316,7 @@ export default function FunahashiHotakaMap() {
               projection="geoMercator"
               projectionConfig={{
                 scale: 900,
-                center: [150, -30]
+                center: [135, -27]
               }}
               style={{ width: '100%', height: '100px' }}
             >
