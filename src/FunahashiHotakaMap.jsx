@@ -302,23 +302,23 @@ export default function FunahashiHotakaMap() {
             position: 'absolute',
             bottom: '20px',
             right: '20px',
-            width: '120px',
+            width: '180px',
             background: 'rgba(248, 240, 227, 0.95)',
             borderRadius: '6px',
-            padding: '8px',
+            padding: '10px',
             border: '2px solid #c4a77d',
             boxShadow: '0 2px 8px rgba(74, 55, 40, 0.2)'
           }}>
-            <div style={{ fontSize: '9px', color: '#6b5b4f', textAlign: 'center', marginBottom: '4px', fontStyle: 'italic' }}>
-              Australia
+            <div style={{ fontSize: '11px', color: '#6b5b4f', textAlign: 'center', marginBottom: '6px', fontStyle: 'italic' }}>
+              Australia - Byron Bay
             </div>
             <ComposableMap
               projection="geoMercator"
               projectionConfig={{
-                scale: 350,
-                center: [134, -28]
+                scale: 500,
+                center: [145, -28]
               }}
-              style={{ width: '100%', height: '70px' }}
+              style={{ width: '100%', height: '100px' }}
             >
               <Geographies geography={WORLD_TOPO}>
                 {({ geographies }) =>
@@ -337,10 +337,10 @@ export default function FunahashiHotakaMap() {
               </Geographies>
               <Marker coordinates={[153.6150, -28.6474]}>
                 <circle
-                  r={hoveredLocation === 3 || selectedLocation === 3 ? 6 : 4}
+                  r={hoveredLocation === 3 || selectedLocation === 3 ? 10 : 7}
                   fill="#B8860B"
                   stroke="#f5e6d3"
-                  strokeWidth={1.5}
+                  strokeWidth={2}
                   style={{ cursor: 'pointer', transition: 'all 0.3s ease' }}
                   onMouseEnter={() => setHoveredLocation(3)}
                   onMouseLeave={() => setHoveredLocation(null)}
@@ -348,8 +348,8 @@ export default function FunahashiHotakaMap() {
                 />
                 <text
                   textAnchor="middle"
-                  y={2}
-                  style={{ fontSize: '6px', fill: '#fff', fontWeight: 'bold' }}
+                  y={3}
+                  style={{ fontSize: '8px', fill: '#fff', fontWeight: 'bold' }}
                 >
                   3
                 </text>
