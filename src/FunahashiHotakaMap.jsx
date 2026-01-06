@@ -310,7 +310,7 @@ export default function FunahashiHotakaMap() {
             boxShadow: '0 2px 8px rgba(74, 55, 40, 0.2)'
           }}>
             <div style={{ fontSize: '11px', color: '#6b5b4f', textAlign: 'center', marginBottom: '6px', fontStyle: 'italic' }}>
-              Australia - Byron Bay
+              Australia
             </div>
             <ComposableMap
               projection="geoMercator"
@@ -352,6 +352,13 @@ export default function FunahashiHotakaMap() {
                   style={{ fontSize: '8px', fill: '#fff', fontWeight: 'bold' }}
                 >
                   3
+                </text>
+                <text
+                  textAnchor="middle"
+                  y={-12}
+                  style={{ fontSize: '10px', fill: '#4a3728', fontWeight: 'bold' }}
+                >
+                  バイロンベイ
                 </text>
               </Marker>
             </ComposableMap>
