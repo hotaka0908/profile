@@ -381,9 +381,9 @@ export default function FunahashiHotakaMap() {
                 from={[153.6150, -28.6474]}
                 to={[145, 10]}
                 stroke="#8B4513"
-                strokeWidth={2}
+                strokeWidth={18}
                 strokeLinecap="round"
-                strokeDasharray="5,3"
+                strokeDasharray="40,25"
                 strokeOpacity={0.5}
               />
               {/* バイロンベイから上方向（東京へ）への線 */}
@@ -391,9 +391,9 @@ export default function FunahashiHotakaMap() {
                 from={[153.6150, -28.6474]}
                 to={[155, 10]}
                 stroke="#8B4513"
-                strokeWidth={2}
+                strokeWidth={18}
                 strokeLinecap="round"
-                strokeDasharray="5,3"
+                strokeDasharray="40,25"
                 strokeOpacity={0.5}
               />
               <Marker coordinates={[153.6150, -28.6474]}>
