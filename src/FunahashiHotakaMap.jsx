@@ -376,10 +376,10 @@ export default function FunahashiHotakaMap() {
                     ))
                 }
               </Geographies>
-              {/* バイロンベイから上方向（日本へ）への線 */}
+              {/* バイロンベイから上方向（横浜から）への線 */}
               <Line
                 from={[153.6150, -28.6474]}
-                to={[140, 0]}
+                to={[148, 10]}
                 stroke="#8B4513"
                 strokeWidth={4}
                 strokeLinecap="round"
@@ -389,7 +389,7 @@ export default function FunahashiHotakaMap() {
               {/* バイロンベイから上方向（東京へ）への線 */}
               <Line
                 from={[153.6150, -28.6474]}
-                to={[155, 0]}
+                to={[162, 10]}
                 stroke="#8B4513"
                 strokeWidth={4}
                 strokeLinecap="round"
