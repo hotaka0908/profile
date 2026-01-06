@@ -355,8 +355,8 @@ export default function FunahashiHotakaMap() {
                 </text>
                 <text
                   textAnchor="middle"
-                  y={-90}
-                  style={{ fontSize: '80px', fill: '#4a3728', fontWeight: 'bold' }}
+                  y={-85}
+                  style={{ fontSize: '55px', fill: '#4a3728', fontWeight: 'bold' }}
                 >
                   バイロンベイ
                 </text>
