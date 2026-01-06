@@ -226,18 +226,56 @@ export default function FunahashiHotakaMap() {
               </Geographies>
 
               {/* 移動経路 */}
-              {journeyPaths.filter(p => p.to !== 2 && p.from !== 2).map((path, index) => (
-                <Line
-                  key={index}
-                  from={locations[path.from].coordinates}
-                  to={locations[path.to].coordinates}
-                  stroke="#8B4513"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeDasharray="5,3"
-                  strokeOpacity={0.5}
-                />
-              ))}
+              {/* 1→2 瀬戸市→横浜 */}
+              <Line
+                from={locations[0].coordinates}
+                to={locations[1].coordinates}
+                stroke="#8B4513"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeDasharray="5,3"
+                strokeOpacity={0.5}
+              />
+              {/* 2→オーストラリア方向（右下へ） */}
+              <Line
+                from={locations[1].coordinates}
+                to={[142, 33]}
+                stroke="#8B4513"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeDasharray="5,3"
+                strokeOpacity={0.5}
+              />
+              {/* オーストラリアから→4 東京 */}
+              <Line
+                from={[142, 33.5]}
+                to={locations[3].coordinates}
+                stroke="#8B4513"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeDasharray="5,3"
+                strokeOpacity={0.5}
+              />
+              {/* 4→5 東京→京都 */}
+              <Line
+                from={locations[3].coordinates}
+                to={locations[4].coordinates}
+                stroke="#8B4513"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeDasharray="5,3"
+                strokeOpacity={0.5}
+              />
+              {/* 5→6 京都→東京 */}
+              <Line
+                from={locations[4].coordinates}
+                to={locations[5].coordinates}
+                stroke="#8B4513"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeDasharray="5,3"
+                strokeOpacity={0.5}
+              />
 
               {/* 場所のマーカー（日本国内のみ） */}
               {locations.filter(loc => loc.id !== 3).map((location, index) => (
@@ -335,6 +373,26 @@ export default function FunahashiHotakaMap() {
                     ))
                 }
               </Geographies>
+              {/* 入線（左上から） */}
+              <Line
+                from={[120, -15]}
+                to={[153.6150, -28.6474]}
+                stroke="#8B4513"
+                strokeWidth={4}
+                strokeLinecap="round"
+                strokeDasharray="8,5"
+                strokeOpacity={0.5}
+              />
+              {/* 出線（左上へ） */}
+              <Line
+                from={[153.6150, -28.6474]}
+                to={[125, -12]}
+                stroke="#8B4513"
+                strokeWidth={4}
+                strokeLinecap="round"
+                strokeDasharray="8,5"
+                strokeOpacity={0.5}
+              />
               <Marker coordinates={[153.6150, -28.6474]}>
                 <circle
                   r={hoveredLocation === 3 || selectedLocation === 3 ? 90 : 70}
