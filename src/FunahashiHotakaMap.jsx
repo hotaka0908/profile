@@ -135,13 +135,6 @@ export default function FunahashiHotakaMap() {
           background: 'linear-gradient(90deg, transparent, #8B7355, transparent)',
           margin: '15px auto'
         }} />
-        <p style={{
-          fontSize: '13px',
-          color: '#7a6a58',
-          margin: '5px 0 0 0'
-        }}>
-          愛知から世界へ — 挑戦と成長の軌跡
-        </p>
       </div>
 
       {/* 地図エリア */}
