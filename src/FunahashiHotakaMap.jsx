@@ -236,26 +236,6 @@ export default function FunahashiHotakaMap() {
                 strokeDasharray="5,3"
                 strokeOpacity={0.5}
               />
-              {/* 2→オーストラリア方向（右下のボックスへ） */}
-              <Line
-                from={locations[1].coordinates}
-                to={[140.5, 33.2]}
-                stroke="#8B4513"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeDasharray="5,3"
-                strokeOpacity={0.5}
-              />
-              {/* オーストラリアから→4 東京 */}
-              <Line
-                from={[140.8, 33.2]}
-                to={locations[3].coordinates}
-                stroke="#8B4513"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeDasharray="5,3"
-                strokeOpacity={0.5}
-              />
               {/* 4→5 東京→京都 */}
               <Line
                 from={locations[3].coordinates}
@@ -335,6 +315,44 @@ export default function FunahashiHotakaMap() {
             </ComposableMap>
           </div>
 
+          {/* 接続線（横浜→オーストラリア→東京） */}
+          <svg
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              pointerEvents: 'none',
+              zIndex: 5
+            }}
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+          >
+            {/* 横浜からオーストラリアボックスへ */}
+            <line
+              x1="82"
+              y1="38"
+              x2="70"
+              y2="78"
+              stroke="#8B4513"
+              strokeWidth="0.3"
+              strokeDasharray="1,0.5"
+              opacity="0.5"
+            />
+            {/* オーストラリアボックスから東京へ */}
+            <line
+              x1="72"
+              y1="78"
+              x2="83"
+              y2="28"
+              stroke="#8B4513"
+              strokeWidth="0.3"
+              strokeDasharray="1,0.5"
+              opacity="0.5"
+            />
+          </svg>
+
           {/* オーストラリア（小さく表示） */}
           <div style={{
             position: 'absolute',
@@ -345,7 +363,8 @@ export default function FunahashiHotakaMap() {
             borderRadius: '6px',
             padding: '10px',
             border: '2px solid #c4a77d',
-            boxShadow: '0 2px 8px rgba(74, 55, 40, 0.2)'
+            boxShadow: '0 2px 8px rgba(74, 55, 40, 0.2)',
+            zIndex: 10
           }}>
             <div style={{ fontSize: '11px', color: '#6b5b4f', textAlign: 'center', marginBottom: '6px', fontStyle: 'italic' }}>
               Australia
@@ -373,26 +392,6 @@ export default function FunahashiHotakaMap() {
                     ))
                 }
               </Geographies>
-              {/* 入線（上から） */}
-              <Line
-                from={[148, -10]}
-                to={[153.6150, -28.6474]}
-                stroke="#8B4513"
-                strokeWidth={4}
-                strokeLinecap="round"
-                strokeDasharray="8,5"
-                strokeOpacity={0.5}
-              />
-              {/* 出線（上へ） */}
-              <Line
-                from={[153.6150, -28.6474]}
-                to={[152, -10]}
-                stroke="#8B4513"
-                strokeWidth={4}
-                strokeLinecap="round"
-                strokeDasharray="8,5"
-                strokeOpacity={0.5}
-              />
               <Marker coordinates={[153.6150, -28.6474]}>
                 <circle
                   r={hoveredLocation === 3 || selectedLocation === 3 ? 90 : 70}
