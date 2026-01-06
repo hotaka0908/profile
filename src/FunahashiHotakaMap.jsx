@@ -250,23 +250,23 @@ export default function FunahashiHotakaMap() {
                   style={{ cursor: 'pointer' }}
                 >
                   <circle
-                    r={hoveredLocation === location.id || selectedLocation === location.id ? 10 : 7}
+                    r={hoveredLocation === location.id || selectedLocation === location.id ? 14 : 10}
                     fill={location.color}
                     stroke="#f5e6d3"
                     strokeWidth={2}
                     style={{ transition: 'all 0.3s ease' }}
                   />
                   <circle
-                    r={hoveredLocation === location.id || selectedLocation === location.id ? 14 : 10}
+                    r={hoveredLocation === location.id || selectedLocation === location.id ? 20 : 14}
                     fill={location.color}
                     opacity={0.2}
                     style={{ transition: 'all 0.3s ease' }}
                   />
                   <text
                     textAnchor="middle"
-                    y={4}
+                    y={5}
                     style={{
-                      fontSize: '8px',
+                      fontSize: '12px',
                       fill: '#fff',
                       fontWeight: 'bold'
                     }}
@@ -275,9 +275,9 @@ export default function FunahashiHotakaMap() {
                   </text>
                   <text
                     textAnchor="middle"
-                    y={-14}
+                    y={-18}
                     style={{
-                      fontSize: '10px',
+                      fontSize: '14px',
                       fill: '#4a3728',
                       fontWeight: 'bold'
                     }}
