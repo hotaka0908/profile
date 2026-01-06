@@ -329,23 +329,23 @@ export default function FunahashiHotakaMap() {
             viewBox="0 0 100 100"
             preserveAspectRatio="none"
           >
-            {/* 横浜からオーストラリアボックスへ */}
+            {/* 横浜(2)からバイロンベイ(3)へ */}
             <line
-              x1="82"
-              y1="38"
-              x2="70"
-              y2="78"
+              x1="88"
+              y1="42"
+              x2="85"
+              y2="87"
               stroke="#8B4513"
               strokeWidth="0.3"
               strokeDasharray="1,0.5"
               opacity="0.5"
             />
-            {/* オーストラリアボックスから東京へ */}
+            {/* バイロンベイ(3)から東京(4)へ */}
             <line
-              x1="72"
-              y1="78"
-              x2="83"
-              y2="28"
+              x1="85"
+              y1="87"
+              x2="87"
+              y2="27"
               stroke="#8B4513"
               strokeWidth="0.3"
               strokeDasharray="1,0.5"
