@@ -1,4 +1,15 @@
 import React, { useState } from 'react';
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  Marker,
+  Line,
+  ZoomableGroup
+} from 'react-simple-maps';
+
+const JAPAN_TOPO = "https://raw.githubusercontent.com/dataofjapan/land/master/japan.topojson";
+const WORLD_TOPO = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
 const locations = [
   {
@@ -7,8 +18,7 @@ const locations = [
     nameEn: 'Seto, Aichi',
     years: '1996-2015',
     age: '0-18歳',
-    x: 255,
-    y: 265,
+    coordinates: [137.0856, 35.2234],
     description: '出生地。4人兄弟の長男として誕生。小1から高3まで野球を12年間続け、享栄高校では野球部主将を務める',
     color: '#8B4513'
   },
@@ -18,8 +28,7 @@ const locations = [
     nameEn: 'Yokohama',
     years: '2015-2017',
     age: '18-20歳',
-    x: 295,
-    y: 255,
+    coordinates: [139.6380, 35.4437],
     description: '関東学院大学進学のため一人暮らし開始。1年半で中退を決意。バイクで53日間の日本一周を敢行',
     color: '#CD853F'
   },
@@ -29,8 +38,7 @@ const locations = [
     nameEn: 'Australia',
     years: '2017',
     age: '20-21歳',
-    x: 340,
-    y: 370,
+    coordinates: [151.2093, -33.8688],
     description: '海外での挑戦。新しい価値観と出会い、複数の起業を試みる',
     color: '#B8860B'
   },
@@ -40,8 +48,7 @@ const locations = [
     nameEn: 'Tokyo',
     years: '2018-2020',
     age: '22-24歳',
-    x: 300,
-    y: 245,
+    coordinates: [139.6917, 35.6895],
     description: '芸能活動期。相方とシェアハウスで生活しながらM-1優勝を目指す。TikTokで763万再生・23万いいねを獲得',
     color: '#DAA520'
   },
@@ -51,8 +58,7 @@ const locations = [
     nameEn: 'Kyoto',
     years: '2020-2024',
     age: '24-28歳',
-    x: 240,
-    y: 270,
+    coordinates: [135.7681, 35.0116],
     description: 'コロナ禍を機に移住。英語学習1095日連続、Google Map公式認定(上位1%)、投資で1万円→4000万円超。全都道府県訪問達成',
     color: '#D2691E'
   },
@@ -62,26 +68,23 @@ const locations = [
     nameEn: 'Tokyo',
     years: '2025-現在',
     age: '28歳〜',
-    x: 305,
-    y: 240,
+    coordinates: [139.7500, 35.7100],
     description: '2025年2月「株式会社Universal Pine」設立。AIネックレスデバイス開発に挑戦。300万円投資+7200万円公庫融資を確保',
     color: '#A0522D'
   }
 ];
 
 const journeyPaths = [
-  { from: 1, to: 2, label: '2015' },
-  { from: 2, to: 3, label: '2017' },
-  { from: 3, to: 4, label: '2018' },
-  { from: 4, to: 5, label: '2020' },
-  { from: 5, to: 6, label: '2025' }
+  { from: 0, to: 1 },
+  { from: 1, to: 2 },
+  { from: 2, to: 3 },
+  { from: 3, to: 4 },
+  { from: 4, to: 5 }
 ];
 
 export default function FunahashiHotakaMap() {
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [hoveredLocation, setHoveredLocation] = useState(null);
-
-  const getLocation = (id) => locations.find(l => l.id === id);
 
   return (
     <div style={{
@@ -141,192 +144,218 @@ export default function FunahashiHotakaMap() {
       <div style={{
         display: 'flex',
         gap: '30px',
-        maxWidth: '1100px',
+        maxWidth: '1200px',
         margin: '0 auto',
         position: 'relative',
-        zIndex: 1
+        zIndex: 1,
+        flexWrap: 'wrap'
       }}>
         {/* 地図 */}
         <div style={{
           flex: '1',
+          minWidth: '500px',
           background: 'linear-gradient(145deg, #f8f0e3, #ebe0ce)',
           borderRadius: '8px',
-          padding: '20px',
+          padding: '15px',
           boxShadow: '0 8px 32px rgba(74, 55, 40, 0.2), inset 0 2px 4px rgba(255,255,255,0.5)',
           border: '3px solid #c4a77d',
           position: 'relative'
         }}>
-          {/* 古地図風の装飾 */}
+          {/* 古地図風の装飾枠 */}
           <div style={{
             position: 'absolute',
-            top: '10px',
-            left: '10px',
-            right: '10px',
-            bottom: '10px',
+            top: '8px',
+            left: '8px',
+            right: '8px',
+            bottom: '8px',
             border: '1px solid #d4c4a8',
             borderRadius: '4px',
             pointerEvents: 'none'
           }} />
 
-          <svg viewBox="0 0 400 420" style={{ width: '100%', height: 'auto' }}>
-            {/* 海 */}
-            <rect x="0" y="0" width="400" height="420" fill="#c9d4c5" opacity="0.3" />
+          {/* 日本地図 */}
+          <div style={{ marginBottom: '10px' }}>
+            <ComposableMap
+              projection="geoMercator"
+              projectionConfig={{
+                scale: 1800,
+                center: [137, 38]
+              }}
+              style={{
+                width: '100%',
+                height: 'auto'
+              }}
+            >
+              <defs>
+                <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="2" dy="2" stdDeviation="2" floodColor="#8B7355" floodOpacity="0.3"/>
+                </filter>
+                <linearGradient id="landGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#e8dcc8" />
+                  <stop offset="50%" stopColor="#ddd0b8" />
+                  <stop offset="100%" stopColor="#d4c4a8" />
+                </linearGradient>
+                <pattern id="paperTexture" patternUnits="userSpaceOnUse" width="100" height="100">
+                  <rect width="100" height="100" fill="#e8dcc8"/>
+                  <circle cx="50" cy="50" r="1" fill="#d4c4a8" opacity="0.3"/>
+                  <circle cx="20" cy="30" r="0.5" fill="#c4a77d" opacity="0.2"/>
+                  <circle cx="80" cy="70" r="0.8" fill="#c4a77d" opacity="0.2"/>
+                </pattern>
+              </defs>
 
-            {/* 日本地図（簡略化） */}
-            {/* 北海道 */}
-            <path
-              d="M 300 80 Q 320 70, 340 75 Q 360 80, 365 100 Q 368 115, 355 125
-                 Q 340 135, 320 130 Q 305 125, 295 110 Q 290 95, 300 80 Z"
-              fill="#e8dcc8"
-              stroke="#8B7355"
-              strokeWidth="1"
-              opacity="0.9"
-            />
+              <rect x="-50" y="-50" width="900" height="600" fill="#c9d4c5" opacity="0.4" />
 
-            {/* 本州 */}
-            <path
-              d="M 180 180 Q 200 170, 230 175 Q 260 172, 290 180
-                 Q 315 185, 330 200 Q 340 215, 335 235
-                 Q 325 250, 310 258 Q 295 265, 280 268
-                 Q 260 275, 240 280 Q 220 285, 200 282
-                 Q 180 278, 165 265 Q 155 250, 160 230
-                 Q 165 210, 180 195 Q 185 185, 180 180 Z"
-              fill="#e8dcc8"
-              stroke="#8B7355"
-              strokeWidth="1.5"
-              opacity="0.9"
-            />
-            <text x="250" y="225" fontSize="12" fill="#6b5b4f" fontStyle="italic" opacity="0.7">Japan</text>
+              <Geographies geography={JAPAN_TOPO}>
+                {({ geographies }) =>
+                  geographies.map((geo) => (
+                    <Geography
+                      key={geo.rsmKey}
+                      geography={geo}
+                      fill="url(#landGradient)"
+                      stroke="#8B7355"
+                      strokeWidth={0.5}
+                      style={{
+                        default: { outline: 'none' },
+                        hover: { outline: 'none', fill: '#d4c4a8' },
+                        pressed: { outline: 'none' }
+                      }}
+                      filter="url(#shadow)"
+                    />
+                  ))
+                }
+              </Geographies>
 
-            {/* 四国 */}
-            <path
-              d="M 200 290 Q 220 285, 240 290 Q 255 295, 250 310
-                 Q 240 320, 220 318 Q 200 315, 200 300 Q 198 292, 200 290 Z"
-              fill="#e8dcc8"
-              stroke="#8B7355"
-              strokeWidth="1"
-              opacity="0.9"
-            />
+              {/* 移動経路 */}
+              {journeyPaths.filter(p => p.to !== 2 && p.from !== 2).map((path, index) => (
+                <Line
+                  key={index}
+                  from={locations[path.from].coordinates}
+                  to={locations[path.to].coordinates}
+                  stroke="#8B4513"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeDasharray="5,3"
+                  strokeOpacity={0.5}
+                />
+              ))}
 
-            {/* 九州 */}
-            <path
-              d="M 160 290 Q 175 285, 185 295 Q 192 310, 185 330
-                 Q 178 345, 165 345 Q 150 340, 148 320
-                 Q 145 305, 160 290 Z"
-              fill="#e8dcc8"
-              stroke="#8B7355"
-              strokeWidth="1"
-              opacity="0.9"
-            />
-
-            {/* オーストラリア（小さく右下に） */}
-            <path
-              d="M 310 350 Q 340 340, 370 350 Q 390 365, 385 385
-                 Q 375 400, 350 402 Q 325 400, 315 385
-                 Q 305 370, 310 350 Z"
-              fill="#e8dcc8"
-              stroke="#8B7355"
-              strokeWidth="1"
-              opacity="0.9"
-            />
-            <text x="350" y="375" fontSize="10" fill="#6b5b4f" fontStyle="italic" opacity="0.7">Australia</text>
-
-            {/* 移動経路 */}
-            <defs>
-              <marker id="arrowhead" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-                <path d="M 0 0 L 6 3 L 0 6 Z" fill="#8B4513" opacity="0.6" />
-              </marker>
-            </defs>
-
-            {journeyPaths.map((path, index) => {
-              const from = getLocation(path.from);
-              const to = getLocation(path.to);
-              const midX = (from.x + to.x) / 2;
-              const midY = (from.y + to.y) / 2 - 15;
-
-              return (
-                <g key={index}>
-                  <path
-                    d={`M ${from.x} ${from.y} Q ${midX} ${midY}, ${to.x} ${to.y}`}
-                    fill="none"
-                    stroke="#8B4513"
-                    strokeWidth="1.5"
-                    strokeDasharray="4,3"
-                    opacity="0.4"
-                    markerEnd="url(#arrowhead)"
+              {/* 場所のマーカー（日本国内のみ） */}
+              {locations.filter(loc => loc.id !== 3).map((location, index) => (
+                <Marker
+                  key={location.id}
+                  coordinates={location.coordinates}
+                  onMouseEnter={() => setHoveredLocation(location.id)}
+                  onMouseLeave={() => setHoveredLocation(null)}
+                  onClick={() => setSelectedLocation(selectedLocation === location.id ? null : location.id)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <circle
+                    r={hoveredLocation === location.id || selectedLocation === location.id ? 10 : 7}
+                    fill={location.color}
+                    stroke="#f5e6d3"
+                    strokeWidth={2}
+                    style={{ transition: 'all 0.3s ease' }}
                   />
-                </g>
-              );
-            })}
+                  <circle
+                    r={hoveredLocation === location.id || selectedLocation === location.id ? 14 : 10}
+                    fill={location.color}
+                    opacity={0.2}
+                    style={{ transition: 'all 0.3s ease' }}
+                  />
+                  <text
+                    textAnchor="middle"
+                    y={4}
+                    style={{
+                      fontSize: '8px',
+                      fill: '#fff',
+                      fontWeight: 'bold'
+                    }}
+                  >
+                    {location.id}
+                  </text>
+                  <text
+                    textAnchor="middle"
+                    y={-14}
+                    style={{
+                      fontSize: '10px',
+                      fill: '#4a3728',
+                      fontWeight: 'bold'
+                    }}
+                  >
+                    {location.name}
+                  </text>
+                </Marker>
+              ))}
 
-            {/* 場所のマーカー */}
-            {locations.map((location) => (
-              <g
-                key={location.id}
-                style={{ cursor: 'pointer' }}
-                onMouseEnter={() => setHoveredLocation(location.id)}
-                onMouseLeave={() => setHoveredLocation(null)}
-                onClick={() => setSelectedLocation(selectedLocation === location.id ? null : location.id)}
-              >
-                {/* マーカーの影 */}
-                <circle
-                  cx={location.x + 2}
-                  cy={location.y + 2}
-                  r={hoveredLocation === location.id || selectedLocation === location.id ? 14 : 10}
-                  fill="rgba(0,0,0,0.2)"
-                  style={{ transition: 'all 0.3s ease' }}
-                />
-                {/* メインマーカー */}
-                <circle
-                  cx={location.x}
-                  cy={location.y}
-                  r={hoveredLocation === location.id || selectedLocation === location.id ? 12 : 8}
-                  fill={location.color}
-                  stroke="#f5e6d3"
-                  strokeWidth="2"
-                  style={{ transition: 'all 0.3s ease' }}
-                />
-                {/* 番号 */}
-                <text
-                  x={location.x}
-                  y={location.y + 4}
-                  fontSize="10"
-                  fill="#fff"
-                  textAnchor="middle"
-                  fontWeight="bold"
-                >
-                  {location.id}
-                </text>
-                {/* 地名ラベル */}
-                <text
-                  x={location.x}
-                  y={location.y - 16}
-                  fontSize="11"
-                  fill="#4a3728"
-                  textAnchor="middle"
-                  fontWeight="bold"
-                >
-                  {location.name}
-                </text>
+              {/* コンパス */}
+              <g transform="translate(80, 80)">
+                <circle cx="0" cy="0" r="20" fill="none" stroke="#8B7355" strokeWidth="1" opacity="0.5" />
+                <path d="M 0 -15 L 3 0 L 0 -6 L -3 0 Z" fill="#8B4513" />
+                <path d="M 0 15 L 3 0 L 0 6 L -3 0 Z" fill="#c4a77d" />
+                <text x="0" y="-22" fontSize="8" fill="#8B4513" textAnchor="middle" fontWeight="bold">N</text>
               </g>
-            ))}
+            </ComposableMap>
+          </div>
 
-            {/* コンパス */}
-            <g transform="translate(50, 60)">
-              <circle cx="0" cy="0" r="25" fill="none" stroke="#8B7355" strokeWidth="1" opacity="0.5" />
-              <path d="M 0 -20 L 4 0 L 0 -8 L -4 0 Z" fill="#8B4513" />
-              <path d="M 0 20 L 4 0 L 0 8 L -4 0 Z" fill="#c4a77d" />
-              <text x="0" y="-28" fontSize="10" fill="#8B4513" textAnchor="middle" fontWeight="bold">N</text>
-            </g>
-
-            {/* スケール */}
-            <g transform="translate(280, 400)">
-              <line x1="0" y1="0" x2="60" y2="0" stroke="#8B7355" strokeWidth="2" />
-              <line x1="0" y1="-3" x2="0" y2="3" stroke="#8B7355" strokeWidth="2" />
-              <line x1="60" y1="-3" x2="60" y2="3" stroke="#8B7355" strokeWidth="2" />
-              <text x="30" y="12" fontSize="8" fill="#6b5b4f" textAnchor="middle">約500km</text>
-            </g>
-          </svg>
+          {/* オーストラリア（小さく表示） */}
+          <div style={{
+            position: 'absolute',
+            bottom: '20px',
+            right: '20px',
+            width: '120px',
+            background: 'rgba(248, 240, 227, 0.95)',
+            borderRadius: '6px',
+            padding: '8px',
+            border: '2px solid #c4a77d',
+            boxShadow: '0 2px 8px rgba(74, 55, 40, 0.2)'
+          }}>
+            <div style={{ fontSize: '9px', color: '#6b5b4f', textAlign: 'center', marginBottom: '4px', fontStyle: 'italic' }}>
+              Australia
+            </div>
+            <ComposableMap
+              projection="geoMercator"
+              projectionConfig={{
+                scale: 350,
+                center: [134, -28]
+              }}
+              style={{ width: '100%', height: '70px' }}
+            >
+              <Geographies geography={WORLD_TOPO}>
+                {({ geographies }) =>
+                  geographies
+                    .filter(geo => geo.properties.name === "Australia")
+                    .map((geo) => (
+                      <Geography
+                        key={geo.rsmKey}
+                        geography={geo}
+                        fill="url(#landGradient)"
+                        stroke="#8B7355"
+                        strokeWidth={0.5}
+                      />
+                    ))
+                }
+              </Geographies>
+              <Marker coordinates={[151.2093, -33.8688]}>
+                <circle
+                  r={hoveredLocation === 3 || selectedLocation === 3 ? 6 : 4}
+                  fill="#B8860B"
+                  stroke="#f5e6d3"
+                  strokeWidth={1.5}
+                  style={{ cursor: 'pointer', transition: 'all 0.3s ease' }}
+                  onMouseEnter={() => setHoveredLocation(3)}
+                  onMouseLeave={() => setHoveredLocation(null)}
+                  onClick={() => setSelectedLocation(selectedLocation === 3 ? null : 3)}
+                />
+                <text
+                  textAnchor="middle"
+                  y={2}
+                  style={{ fontSize: '6px', fill: '#fff', fontWeight: 'bold' }}
+                >
+                  3
+                </text>
+              </Marker>
+            </ComposableMap>
+          </div>
         </div>
 
         {/* 年表サイドバー */}
