@@ -315,8 +315,8 @@ export default function FunahashiHotakaMap() {
             <ComposableMap
               projection="geoMercator"
               projectionConfig={{
-                scale: 500,
-                center: [145, -28]
+                scale: 900,
+                center: [150, -30]
               }}
               style={{ width: '100%', height: '100px' }}
             >
