@@ -420,6 +420,9 @@ export default function FunahashiHotakaMap() {
                 </text>
               </Marker>
             </ComposableMap>
+            <div style={{ fontSize: '11px', color: '#6b5b4f', textAlign: 'center', marginTop: '6px', fontStyle: 'italic' }}>
+              Australia
+            </div>
           </div>
         </div>
 
