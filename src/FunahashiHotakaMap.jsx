@@ -34,11 +34,11 @@ const locations = [
   },
   {
     id: 3,
-    name: 'オーストラリア',
-    nameEn: 'Australia',
+    name: 'バイロンベイ',
+    nameEn: 'Byron Bay, Australia',
     years: '2017',
     age: '20-21歳',
-    coordinates: [151.2093, -33.8688],
+    coordinates: [153.6150, -28.6474],
     description: '海外での挑戦。新しい価値観と出会い、複数の起業を試みる',
     color: '#B8860B'
   },
@@ -335,7 +335,7 @@ export default function FunahashiHotakaMap() {
                     ))
                 }
               </Geographies>
-              <Marker coordinates={[151.2093, -33.8688]}>
+              <Marker coordinates={[153.6150, -28.6474]}>
                 <circle
                   r={hoveredLocation === 3 || selectedLocation === 3 ? 6 : 4}
                   fill="#B8860B"
