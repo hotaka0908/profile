@@ -337,10 +337,10 @@ export default function FunahashiHotakaMap() {
               </Geographies>
               <Marker coordinates={[153.6150, -28.6474]}>
                 <circle
-                  r={hoveredLocation === 3 || selectedLocation === 3 ? 10 : 7}
+                  r={hoveredLocation === 3 || selectedLocation === 3 ? 18 : 14}
                   fill="#B8860B"
                   stroke="#f5e6d3"
-                  strokeWidth={2}
+                  strokeWidth={3}
                   style={{ cursor: 'pointer', transition: 'all 0.3s ease' }}
                   onMouseEnter={() => setHoveredLocation(3)}
                   onMouseLeave={() => setHoveredLocation(null)}
@@ -348,15 +348,15 @@ export default function FunahashiHotakaMap() {
                 />
                 <text
                   textAnchor="middle"
-                  y={3}
-                  style={{ fontSize: '8px', fill: '#fff', fontWeight: 'bold' }}
+                  y={5}
+                  style={{ fontSize: '14px', fill: '#fff', fontWeight: 'bold' }}
                 >
                   3
                 </text>
                 <text
                   textAnchor="middle"
-                  y={-12}
-                  style={{ fontSize: '10px', fill: '#4a3728', fontWeight: 'bold' }}
+                  y={-20}
+                  style={{ fontSize: '16px', fill: '#4a3728', fontWeight: 'bold' }}
                 >
                   バイロンベイ
                 </text>
