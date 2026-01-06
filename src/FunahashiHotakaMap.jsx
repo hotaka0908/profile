@@ -173,9 +173,19 @@ export default function FunahashiHotakaMap() {
             pointerEvents: 'none'
           }} />
 
-          {/* 日本地図（オーストラリアインセット含む） */}
-          <div style={{ marginBottom: '10px', position: 'relative' }}>
-            <svg viewBox="0 0 800 500" style={{ width: '100%', height: 'auto' }}>
+          {/* 日本地図 */}
+          <div style={{ marginBottom: '10px' }}>
+            <ComposableMap
+              projection="geoMercator"
+              projectionConfig={{
+                scale: 8500,
+                center: [137.5, 35.3]
+              }}
+              style={{
+                width: '100%',
+                height: 'auto'
+              }}
+            >
               <defs>
                 <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
                   <feDropShadow dx="2" dy="2" stdDeviation="2" floodColor="#8B7355" floodOpacity="0.3"/>
@@ -185,265 +195,234 @@ export default function FunahashiHotakaMap() {
                   <stop offset="50%" stopColor="#ddd0b8" />
                   <stop offset="100%" stopColor="#d4c4a8" />
                 </linearGradient>
-                <linearGradient id="australiaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#e8dcc8" />
-                  <stop offset="100%" stopColor="#d4c4a8" />
-                </linearGradient>
+                <pattern id="paperTexture" patternUnits="userSpaceOnUse" width="100" height="100">
+                  <rect width="100" height="100" fill="#e8dcc8"/>
+                  <circle cx="50" cy="50" r="1" fill="#d4c4a8" opacity="0.3"/>
+                  <circle cx="20" cy="30" r="0.5" fill="#c4a77d" opacity="0.2"/>
+                  <circle cx="80" cy="70" r="0.8" fill="#c4a77d" opacity="0.2"/>
+                </pattern>
               </defs>
 
-              {/* 背景 */}
-              <rect x="0" y="0" width="800" height="500" fill="#c9d4c5" opacity="0.4" />
+              <rect x="-50" y="-50" width="900" height="600" fill="#c9d4c5" opacity="0.4" />
 
-              {/* 日本地図 */}
-              <g transform="translate(0, 0)">
-                <ComposableMap
-                  projection="geoMercator"
-                  projectionConfig={{
-                    scale: 8500,
-                    center: [137.5, 35.3]
-                  }}
-                  width={800}
-                  height={500}
-                  style={{ width: '100%', height: '100%' }}
-                >
-                  <Geographies geography={JAPAN_TOPO}>
-                    {({ geographies }) =>
-                      geographies.map((geo) => (
-                        <Geography
-                          key={geo.rsmKey}
-                          geography={geo}
-                          fill="url(#landGradient)"
-                          stroke="#8B7355"
-                          strokeWidth={0.5}
-                          style={{
-                            default: { outline: 'none' },
-                            hover: { outline: 'none', fill: '#d4c4a8' },
-                            pressed: { outline: 'none' }
-                          }}
-                          filter="url(#shadow)"
-                        />
-                      ))
-                    }
-                  </Geographies>
-
-                  {/* 移動経路（バイロンベイを含む完全な経路） */}
-                  {/* 1→2 瀬戸市→横浜 */}
-                  <Line
-                    from={locations[0].coordinates}
-                    to={locations[1].coordinates}
-                    stroke="#8B4513"
-                    strokeWidth={2}
-                    strokeLinecap="round"
-                    strokeDasharray="5,3"
-                    strokeOpacity={0.5}
-                  />
-                  {/* 2→3 横浜→バイロンベイ（オーストラリアボックス内の位置へ） */}
-                  <Line
-                    from={locations[1].coordinates}
-                    to={[140.2, 30.5]}
-                    stroke="#8B4513"
-                    strokeWidth={2}
-                    strokeLinecap="round"
-                    strokeDasharray="5,3"
-                    strokeOpacity={0.5}
-                  />
-                  {/* 3→4 バイロンベイ→東京 */}
-                  <Line
-                    from={[140.2, 30.5]}
-                    to={locations[3].coordinates}
-                    stroke="#8B4513"
-                    strokeWidth={2}
-                    strokeLinecap="round"
-                    strokeDasharray="5,3"
-                    strokeOpacity={0.5}
-                  />
-                  {/* 4→5 東京→京都 */}
-                  <Line
-                    from={locations[3].coordinates}
-                    to={locations[4].coordinates}
-                    stroke="#8B4513"
-                    strokeWidth={2}
-                    strokeLinecap="round"
-                    strokeDasharray="5,3"
-                    strokeOpacity={0.5}
-                  />
-                  {/* 5→6 京都→東京 */}
-                  <Line
-                    from={locations[4].coordinates}
-                    to={locations[5].coordinates}
-                    stroke="#8B4513"
-                    strokeWidth={2}
-                    strokeLinecap="round"
-                    strokeDasharray="5,3"
-                    strokeOpacity={0.5}
-                  />
-
-                  {/* 場所のマーカー（日本国内のみ） */}
-                  {locations.filter(loc => loc.id !== 3).map((location) => (
-                    <Marker
-                      key={location.id}
-                      coordinates={location.coordinates}
-                      onMouseEnter={() => setHoveredLocation(location.id)}
-                      onMouseLeave={() => setHoveredLocation(null)}
-                      onClick={() => setSelectedLocation(selectedLocation === location.id ? null : location.id)}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      <circle
-                        r={hoveredLocation === location.id || selectedLocation === location.id ? 14 : 10}
-                        fill={location.color}
-                        stroke="#f5e6d3"
-                        strokeWidth={2}
-                        style={{ transition: 'all 0.3s ease' }}
-                      />
-                      <circle
-                        r={hoveredLocation === location.id || selectedLocation === location.id ? 20 : 14}
-                        fill={location.color}
-                        opacity={0.2}
-                        style={{ transition: 'all 0.3s ease' }}
-                      />
-                      <text
-                        textAnchor="middle"
-                        y={5}
-                        style={{
-                          fontSize: '12px',
-                          fill: '#fff',
-                          fontWeight: 'bold'
-                        }}
-                      >
-                        {location.id}
-                      </text>
-                      <text
-                        textAnchor="middle"
-                        y={-18}
-                        style={{
-                          fontSize: '14px',
-                          fill: '#4a3728',
-                          fontWeight: 'bold'
-                        }}
-                      >
-                        {location.name}
-                      </text>
-                    </Marker>
-                  ))}
-
-                  {/* バイロンベイマーカー（仮想座標に配置） */}
-                  <Marker
-                    coordinates={[140.2, 30.5]}
-                    onMouseEnter={() => setHoveredLocation(3)}
-                    onMouseLeave={() => setHoveredLocation(null)}
-                    onClick={() => setSelectedLocation(selectedLocation === 3 ? null : 3)}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    <circle
-                      r={hoveredLocation === 3 || selectedLocation === 3 ? 14 : 10}
-                      fill="#B8860B"
-                      stroke="#f5e6d3"
-                      strokeWidth={2}
-                      style={{ transition: 'all 0.3s ease' }}
-                    />
-                    <circle
-                      r={hoveredLocation === 3 || selectedLocation === 3 ? 20 : 14}
-                      fill="#B8860B"
-                      opacity={0.2}
-                      style={{ transition: 'all 0.3s ease' }}
-                    />
-                    <text
-                      textAnchor="middle"
-                      y={5}
+              <Geographies geography={JAPAN_TOPO}>
+                {({ geographies }) =>
+                  geographies.map((geo) => (
+                    <Geography
+                      key={geo.rsmKey}
+                      geography={geo}
+                      fill="url(#landGradient)"
+                      stroke="#8B7355"
+                      strokeWidth={0.5}
                       style={{
-                        fontSize: '12px',
-                        fill: '#fff',
-                        fontWeight: 'bold'
+                        default: { outline: 'none' },
+                        hover: { outline: 'none', fill: '#d4c4a8' },
+                        pressed: { outline: 'none' }
                       }}
-                    >
-                      3
-                    </text>
-                    <text
-                      textAnchor="middle"
-                      y={-18}
-                      style={{
-                        fontSize: '12px',
-                        fill: '#4a3728',
-                        fontWeight: 'bold'
-                      }}
-                    >
-                      バイロンベイ
-                    </text>
-                  </Marker>
+                      filter="url(#shadow)"
+                    />
+                  ))
+                }
+              </Geographies>
 
-                  {/* コンパス */}
-                  <g transform="translate(80, 80)">
-                    <circle cx="0" cy="0" r="20" fill="none" stroke="#8B7355" strokeWidth="1" opacity="0.5" />
-                    <path d="M 0 -15 L 3 0 L 0 -6 L -3 0 Z" fill="#8B4513" />
-                    <path d="M 0 15 L 3 0 L 0 6 L -3 0 Z" fill="#c4a77d" />
-                    <text x="0" y="-22" fontSize="8" fill="#8B4513" textAnchor="middle" fontWeight="bold">N</text>
-                  </g>
-                </ComposableMap>
-              </g>
+              {/* 仮想バイロンベイ座標（オーストラリアボックスの位置に対応） */}
+              {/* 移動経路 */}
+              {/* 1→2 瀬戸市→横浜 */}
+              <Line
+                from={locations[0].coordinates}
+                to={locations[1].coordinates}
+                stroke="#8B4513"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeDasharray="5,3"
+                strokeOpacity={0.5}
+              />
+              {/* 2→3 横浜→バイロンベイ（仮想座標：地図右下） */}
+              <Line
+                from={locations[1].coordinates}
+                to={[140.5, 29]}
+                stroke="#8B4513"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeDasharray="5,3"
+                strokeOpacity={0.5}
+              />
+              {/* 3→4 バイロンベイ（仮想座標）→東京 */}
+              <Line
+                from={[140.5, 29]}
+                to={locations[3].coordinates}
+                stroke="#8B4513"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeDasharray="5,3"
+                strokeOpacity={0.5}
+              />
+              {/* 4→5 東京→京都 */}
+              <Line
+                from={locations[3].coordinates}
+                to={locations[4].coordinates}
+                stroke="#8B4513"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeDasharray="5,3"
+                strokeOpacity={0.5}
+              />
+              {/* 5→6 京都→東京 */}
+              <Line
+                from={locations[4].coordinates}
+                to={locations[5].coordinates}
+                stroke="#8B4513"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeDasharray="5,3"
+                strokeOpacity={0.5}
+              />
 
-              {/* オーストラリアインセット（SVG内に埋め込み） */}
-              <g transform="translate(580, 340)">
-                {/* ボックス背景 */}
-                <rect
-                  x="0"
-                  y="0"
-                  width="200"
-                  height="140"
-                  fill="rgba(248, 240, 227, 0.95)"
-                  stroke="#c4a77d"
-                  strokeWidth="2"
-                  rx="6"
-                />
-                {/* タイトル */}
-                <text
-                  x="100"
-                  y="18"
-                  textAnchor="middle"
-                  style={{ fontSize: '11px', fill: '#6b5b4f', fontStyle: 'italic' }}
+              {/* 場所のマーカー（日本国内のみ） */}
+              {locations.filter(loc => loc.id !== 3).map((location, index) => (
+                <Marker
+                  key={location.id}
+                  coordinates={location.coordinates}
+                  onMouseEnter={() => setHoveredLocation(location.id)}
+                  onMouseLeave={() => setHoveredLocation(null)}
+                  onClick={() => setSelectedLocation(selectedLocation === location.id ? null : location.id)}
+                  style={{ cursor: 'pointer' }}
                 >
-                  Australia
-                </text>
-                {/* オーストラリア地図（簡略化した形状） */}
-                <g transform="translate(20, 25)">
-                  <path
-                    d="M 80 10 Q 120 5 140 20 Q 155 35 150 60 Q 145 85 120 95 Q 90 105 60 95 Q 30 85 20 60 Q 15 35 30 20 Q 50 5 80 10 Z"
-                    fill="url(#australiaGradient)"
-                    stroke="#8B7355"
-                    strokeWidth="1"
-                    filter="url(#shadow)"
-                  />
-                  {/* バイロンベイの位置（東海岸） */}
                   <circle
-                    cx="145"
-                    cy="55"
-                    r={hoveredLocation === 3 || selectedLocation === 3 ? 10 : 8}
-                    fill="#B8860B"
+                    r={hoveredLocation === location.id || selectedLocation === location.id ? 14 : 10}
+                    fill={location.color}
                     stroke="#f5e6d3"
-                    strokeWidth="2"
-                    style={{ cursor: 'pointer', transition: 'all 0.3s ease' }}
-                    onMouseEnter={() => setHoveredLocation(3)}
-                    onMouseLeave={() => setHoveredLocation(null)}
-                    onClick={() => setSelectedLocation(selectedLocation === 3 ? null : 3)}
+                    strokeWidth={2}
+                    style={{ transition: 'all 0.3s ease' }}
+                  />
+                  <circle
+                    r={hoveredLocation === location.id || selectedLocation === location.id ? 20 : 14}
+                    fill={location.color}
+                    opacity={0.2}
+                    style={{ transition: 'all 0.3s ease' }}
                   />
                   <text
-                    x="145"
-                    y="58"
                     textAnchor="middle"
-                    style={{ fontSize: '10px', fill: '#fff', fontWeight: 'bold', pointerEvents: 'none' }}
+                    y={5}
+                    style={{
+                      fontSize: '12px',
+                      fill: '#fff',
+                      fontWeight: 'bold'
+                    }}
                   >
-                    3
+                    {location.id}
                   </text>
                   <text
-                    x="120"
-                    y="45"
-                    textAnchor="end"
-                    style={{ fontSize: '10px', fill: '#4a3728', fontWeight: 'bold' }}
+                    textAnchor="middle"
+                    y={-18}
+                    style={{
+                      fontSize: '14px',
+                      fill: '#4a3728',
+                      fontWeight: 'bold'
+                    }}
                   >
-                    バイロンベイ
+                    {location.name}
                   </text>
-                </g>
+                </Marker>
+              ))}
+
+              {/* コンパス */}
+              <g transform="translate(80, 80)">
+                <circle cx="0" cy="0" r="20" fill="none" stroke="#8B7355" strokeWidth="1" opacity="0.5" />
+                <path d="M 0 -15 L 3 0 L 0 -6 L -3 0 Z" fill="#8B4513" />
+                <path d="M 0 15 L 3 0 L 0 6 L -3 0 Z" fill="#c4a77d" />
+                <text x="0" y="-22" fontSize="8" fill="#8B4513" textAnchor="middle" fontWeight="bold">N</text>
               </g>
-            </svg>
+            </ComposableMap>
+          </div>
+
+
+          {/* オーストラリア（小さく表示） */}
+          <div style={{
+            position: 'absolute',
+            bottom: '20px',
+            right: '20px',
+            width: '180px',
+            background: 'rgba(248, 240, 227, 0.95)',
+            borderRadius: '6px',
+            padding: '10px',
+            border: '2px solid #c4a77d',
+            boxShadow: '0 2px 8px rgba(74, 55, 40, 0.2)',
+            zIndex: 1
+          }}>
+            <div style={{ fontSize: '11px', color: '#6b5b4f', textAlign: 'center', marginBottom: '6px', fontStyle: 'italic' }}>
+              Australia
+            </div>
+            <ComposableMap
+              projection="geoMercator"
+              projectionConfig={{
+                scale: 900,
+                center: [135, -27]
+              }}
+              style={{ width: '100%', height: '100px' }}
+            >
+              <Geographies geography={WORLD_TOPO}>
+                {({ geographies }) =>
+                  geographies
+                    .filter(geo => geo.properties.name === "Australia")
+                    .map((geo) => (
+                      <Geography
+                        key={geo.rsmKey}
+                        geography={geo}
+                        fill="url(#landGradient)"
+                        stroke="#8B7355"
+                        strokeWidth={0.5}
+                      />
+                    ))
+                }
+              </Geographies>
+              {/* バイロンベイから上方向（横浜から）への線 */}
+              <Line
+                from={[153.6150, -28.6474]}
+                to={[148, 10]}
+                stroke="#8B4513"
+                strokeWidth={4}
+                strokeLinecap="round"
+                strokeDasharray="8,5"
+                strokeOpacity={0.5}
+              />
+              {/* バイロンベイから上方向（東京へ）への線 */}
+              <Line
+                from={[153.6150, -28.6474]}
+                to={[162, 10]}
+                stroke="#8B4513"
+                strokeWidth={4}
+                strokeLinecap="round"
+                strokeDasharray="8,5"
+                strokeOpacity={0.5}
+              />
+              <Marker coordinates={[153.6150, -28.6474]}>
+                <circle
+                  r={hoveredLocation === 3 || selectedLocation === 3 ? 90 : 70}
+                  fill="#B8860B"
+                  stroke="#f5e6d3"
+                  strokeWidth={15}
+                  style={{ cursor: 'pointer', transition: 'all 0.3s ease' }}
+                  onMouseEnter={() => setHoveredLocation(3)}
+                  onMouseLeave={() => setHoveredLocation(null)}
+                  onClick={() => setSelectedLocation(selectedLocation === 3 ? null : 3)}
+                />
+                <text
+                  textAnchor="middle"
+                  y={25}
+                  style={{ fontSize: '70px', fill: '#fff', fontWeight: 'bold' }}
+                >
+                  3
+                </text>
+                <text
+                  textAnchor="middle"
+                  y={-85}
+                  style={{ fontSize: '55px', fill: '#4a3728', fontWeight: 'bold' }}
+                >
+                  バイロンベイ
+                </text>
+              </Marker>
+            </ComposableMap>
           </div>
         </div>
 
